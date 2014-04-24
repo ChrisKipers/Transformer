@@ -1,0 +1,83 @@
+@import "theme";
+@import "compass/css3";
+
+$handles: 	("th-topLeft", 0%, 0%, ("top","left")),
+			("th-topCenter", 0%, 50%, ("top")),
+			("th-topRight", 0%, 100%, ("top","right")),
+			("th-bottomLeft", 100%, 0%, ("bottom","left")),
+			("th-bottomCenter", 100%, 50%, ("bottom")),
+			("th-bottomRight", 100%, 100%, ("bottom","right")),
+			("th-right", 50%, 100%, ("right")),
+			("th-left", 50%, 0%, ("left"));
+
+.ck-transformable {
+	position: absolute;
+	border: $borderWidth solid $borderColor;
+	@include box-sizing(border-box);
+
+	&.disable-scale > .handle:not(.rotHandle) {
+		display: none;
+	}
+	
+	&.disable-rotate > .rotHandle {
+		display: none;
+	}
+
+	&.hide {
+		border: none;
+		> .handle {
+			display: none
+		}
+	}
+
+	@each $handle in $handles {
+		&.active-#{nth($handle,1)} {
+			@each $border in nth($handle,4) {
+				border-#{$border} : $borderWidth solid $handleActiveColor;
+			}
+
+			> .handle.#{nth($handle,1)} {
+				border: $handleBorderWidth solid $handleActiveColor;
+			}
+		}
+	}
+
+	&.active-rotHandle {
+		border: $borderWidth solid $rotationHandleActiveColor;
+		> .handle.rotHandle {
+			border: $rotationHandleBorderWidth solid $rotationHandleActiveColor;
+		}
+	}
+
+	&.active-translate {
+		border: $borderWidth solid $translateActiveColor;
+	}
+
+	.handle {
+		border: $handleBorderWidth solid $handleColor;
+		width: $handleWidth;
+		height: $handleWidth;
+		position: absolute;
+		margin: $handleWidth / -2 0 0 $handleWidth / -2;
+		@include border-radius($handleRaidus);
+		@include box-sizing(border-box);
+
+		@each $handle in $handles {
+			&.#{nth($handle,1)} {
+				top: #{nth($handle,2)};
+				left: #{nth($handle,3)};
+			}
+		}
+
+		&.rotHandle {
+			border: $rotationHandleBorderWidth solid $rotationHandleColor;
+			width: $rotationHandleWidth;
+			height: $rotationHandleWidth;
+			position: absolute;
+			margin: $rotationHandleWidth / -2 0 0 $rotationHandleWidth / -2;
+			@include border-radius($rotationHandleRaidus);
+			top: $rotationHandleTopOffset;
+			left: 50%;
+		}
+	}
+}

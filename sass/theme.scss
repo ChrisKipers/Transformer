@@ -1,0 +1,20 @@
+$primaryColor: #000;
+$secondaryColor: #30F0F0;
+
+$borderColor: $primaryColor;
+$borderWidth: 2px;
+
+$handleColor: $borderColor;
+$handleBorderWidth: $borderWidth / 2;
+$handleWidth: 15px;
+$handleRaidus: 0px;
+$handleActiveColor: $secondaryColor;
+
+$rotationHandleColor: $borderColor;
+$rotationHandleBorderWidth: $handleBorderWidth;
+$rotationHandleWidth: $handleWidth;
+$rotationHandleRaidus: $handleWidth / 2;
+$rotationHandleActiveColor: $handleActiveColor;
+$rotationHandleTopOffset: -25px;
+
+$translateActiveColor: $secondaryColor;
